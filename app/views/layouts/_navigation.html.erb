@@ -5,7 +5,18 @@
   <li>
     <%= link_to 'New Post', new_post_path %>
   </li>
-  <li>
-    <%= link_to 'New Category', new_category_path %>
-  </li>
 </ul>
+
+<!-- Categories button -->
+<div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+    Categories <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" role="menu">
+    <% Category.all.each do |cat| %>
+    <li><%= link_to cat.name, category_path(cat) %></li>
+    <% end %>
+    <li class="divider"></li>
+    <li><%= link_to 'New category', new_category_path %></li>
+  </ul>
+</div>

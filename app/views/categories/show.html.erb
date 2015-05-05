@@ -1,0 +1,9 @@
+<h3><%= link_to "All posts", posts_path %> >> <%= @category.name %></h3>
+
+<% if @category.posts.any? %>
+  <ul>
+    <% @category.posts.each do |post| %>
+    <li><%= link_to post.title,  post_path(post) %></li>
+    <% end %>
+  </ul>
+<% end %>
