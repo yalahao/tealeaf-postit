@@ -1,10 +1,6 @@
 class PostsController < ApplicationController
-  
-  before_action :get_post, only: [:show, :edit, :update]
 
-  def index
-    @posts = Post.all
-  end
+  before_action :get_post, only: [:show, :edit, :update]
 
   def new
     @post = Post.new
@@ -21,6 +17,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def index
+    @posts = Post.all
+  end
+  
   def show
   end
 
