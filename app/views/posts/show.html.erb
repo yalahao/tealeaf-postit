@@ -1,6 +1,10 @@
+<% @post.categories.each do |cat| %>
+  <span class="badge">
+    <%= link_to cat.name, category_path(cat) %>
+  </span>
+<% end %>
 <h3><%= @post.title %></h3>
 <h4>By <%= @post.creator.username %></h4>
-
 <p><%= @post.description %></p>
 <p><%= link_to 'Back', posts_path %> | <%= link_to 'Edit', edit_post_path %></p>
 

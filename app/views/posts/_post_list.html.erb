@@ -1,0 +1,17 @@
+<% @posts.each do |post| %>
+  <div class="well">
+    <% post.categories.each do |cat| %>
+      <span class="badge">
+        <%= link_to cat.name, category_path(cat) %>
+      </span>
+    <% end %>
+    <h4><%= link_to post.title, post_path(post) %></h4>
+    <p><%= post.description %></p>
+    <p>
+      <span class="quiet">posted by </span>
+      <%= link_to post.creator.username %>
+      <small><%= post.created_at %></small>
+    </p>
+    <small><span><%= post.comments.size %> comments</span></small>
+  </div>
+<% end %>
