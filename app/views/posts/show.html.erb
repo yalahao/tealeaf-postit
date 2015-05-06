@@ -1,5 +1,5 @@
 <%= render 'posts/post_title_categories', post: @post %>
-<h5>By <%= @post.creator.username %></h5>
+<h5>Posted by <%= @post.creator.username %></h5>
 <p><%= @post.description %></p>
 <p><%= link_to 'Back', posts_path %> | <%= link_to 'Edit', edit_post_path(@post) %></p>
 
