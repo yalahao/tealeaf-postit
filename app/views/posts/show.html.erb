@@ -1,14 +1,17 @@
-<%= render 'post_title_categories', post: @post %>
+<%= render 'posts/post_title_categories', post: @post %>
 <h5>By <%= @post.creator.username %></h5>
 <p><%= @post.description %></p>
-<p><%= link_to 'Back', posts_path %> | <%= link_to 'Edit', edit_post_path %></p>
+<p><%= link_to 'Back', posts_path %> | <%= link_to 'Edit', edit_post_path(@post) %></p>
 
-<%= form_for @comment do |f| %>
-  <%= f.label "Add a comment" %>
+<%= render 'shared/error_msg', obj: @comment %>
+<h5>What do you think of this post?</h5>
+<%= form_for [@post, @comment] do |f| %>
   <%= f.text_area :body %>
-  <%= f.submit %>
+  <br />
+  <%= f.submit "Add Comment" %>
 <% end %>
 
+<h5>Comments:</h5>
 <% @post.comments.each do |comment| %>
   <div class="well">
     <em><%= comment.body %></em>
