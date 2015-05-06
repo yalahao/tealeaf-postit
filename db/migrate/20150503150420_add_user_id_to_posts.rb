@@ -4,8 +4,4 @@ class AddUserIdToPosts < ActiveRecord::Migration
       t.integer :user_id
     end
   end
-
-  def add_timestamps_to_posts
-    add_timestamps :posts
-  end
 end

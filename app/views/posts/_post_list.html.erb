@@ -1,10 +1,6 @@
 <% posts.each do |post| %>
   <div class="well">
-    <% post.categories.each do |cat| %>
-      <span class="badge">
-        <%= link_to cat.name, category_path(cat) %>
-      </span>
-    <% end %>
+    <%= render 'category_badges', post: post %>
     <h4><%= link_to post.title, post_path(post) %></h4>
     <p><%= post.description %></p>
     <p>
@@ -12,6 +8,6 @@
       <%= link_to post.creator.username %>
       <small><%= post.created_at %></small>
     </p>
-    <small><span><%= post.comments.size %> comments</span></small>
+    <small><span><%= link_to "#{post.comments.size} comments", post_path(post) %></span></small>
   </div>
 <% end %>

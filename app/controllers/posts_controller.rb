@@ -8,7 +8,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create(post_params)
-    @post.creator = User.first
+    @post.creator = User.all.sample # TODO: will change after adding users
     if @post.save
       flash[:notice] = "Post created."
       redirect_to posts_path
