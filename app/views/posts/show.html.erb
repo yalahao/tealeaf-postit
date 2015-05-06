@@ -1,8 +1,13 @@
-<%= render 'category_badges', post: @post %>
-<h3><%= link_to @post.title, @post.url %></h3>
-<h4>By <%= @post.creator.username %></h4>
+<%= render 'post_title_categories', post: @post %>
+<h5>By <%= @post.creator.username %></h5>
 <p><%= @post.description %></p>
 <p><%= link_to 'Back', posts_path %> | <%= link_to 'Edit', edit_post_path %></p>
+
+<%= form_for @comment do |f| %>
+  <%= f.label "Add a comment" %>
+  <%= f.text_area :body %>
+  <%= f.submit %>
+<% end %>
 
 <% @post.comments.each do |comment| %>
   <div class="well">

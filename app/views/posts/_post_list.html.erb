@@ -1,8 +1,6 @@
 <% posts.each do |post| %>
   <div class="well">
-    <%= render 'posts/category_badges', post: post %>
-    <h4><%= link_to post.title, add_http(post.url) %></h4>
-    <% binding.pry %>
+    <%= render 'posts/post_title_categories', post: post %>
     <p><%= post.description %></p>
     <p>
       <span class="quiet">posted by </span>
