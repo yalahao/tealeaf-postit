@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
   before_action :get_post, only: [:show, :edit, :update]
+  before_action :require_user, except: [:index, :show]
 
   def new
     @post = Post.new
@@ -8,7 +9,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.create(post_params)
-    @post.creator = User.all.sample # TODO: will change after adding users
+    @post.creator = current_user
     if @post.save
       flash[:notice] = "Post created."
       redirect_to posts_path

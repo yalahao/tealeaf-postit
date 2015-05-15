@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
     @comment = Comment.create(comment_params)
     @post = Post.find(params[:post_id])
     @comment.post = @post
-    @comment.creator = User.all.sample #TODO: change after adding users
+    @comment.creator = current_user
     if @comment.save
       flash[:notice] = "Comment saved"
       redirect_to post_path(@post)
