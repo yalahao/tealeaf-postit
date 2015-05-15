@@ -1,5 +1,3 @@
-<h3>User: <%= @user.username %></h3>
-
-<h4>Posts:</h4>
+<h3>Posts created by: <%= @user.username %></h3>
 
 <%= render 'posts/post_list', posts: @user.posts %>

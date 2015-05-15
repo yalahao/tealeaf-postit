@@ -1,10 +1,10 @@
 <% posts.each do |post| %>
-  <div class="well">
+  <div class="well post" >
     <%= render 'posts/post_title_categories', post: post %>
     <p><%= post.description %></p>
     <p>
       <span class="quiet">posted by </span>
-      <%= link_to post.creator.username %>
+      <%= link_to post.creator.username, user_path(post.creator) %>
       <small><%= formatted_date(post.created_at) %></small>
     </p>
     <small><span><%= link_to "#{post.comments.size} comments", post_path(post) %></span></small>
