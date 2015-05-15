@@ -10,8 +10,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      flash[:notice] = "Successfully registered. You can log in now."
-      redirect_to login_path
+      flash[:notice] = "You have successfully registered!"
+      session[:user_id] = User.find_by username: user_params[:username]
+      redirect_to root_path
     else
       render 'new'
     end
