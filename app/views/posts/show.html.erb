@@ -12,13 +12,5 @@
 <% end %>
 
 <h5>Comments:</h5>
-<% @post.comments.each do |comment| %>
-  <div class="well">
-    <em><%= comment.body %></em>
-    <br>
-    <span class='quiet'>by</span>
-    <%= link_to "#{comment.creator.username}", user_path(comment.creator) %>
-    <small><%= formatted_date(comment.created_at) %></small>
-  </div>
-<% end %>
+<%= render 'comments/comment_list', obj: @post.comments %>
 

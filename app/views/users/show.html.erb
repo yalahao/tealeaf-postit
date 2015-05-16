@@ -1,3 +1,30 @@
-<h3>Posts created by: <%= @user.username %></h3>
+<h3>Profile of <%= @user.username %></h3>
 
-<%= render 'posts/post_list', posts: @user.posts %>
+<h4>Latest activities:</h4>
+
+<script>
+  $('#userTab a').click(function (e) {
+    e.preventDefault()
+    $(this).tab('show')
+  })
+</script>
+
+<div role="tabpanel">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist" id="userTab">
+    <li role="presentation"><a href="#posts" aria-controls="posts" role="tab" data-toggle="tab">Posts (<%= @user.posts.size %>)</a></li>
+    <li role="presentation"><a href="#comments" aria-controls="comments" role="tab" data-toggle="tab">Comments (<%= @user.comments.size %>)</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane" id="posts">
+      <%= render 'posts/post_list', posts: @user.posts %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="comments">
+      <%= render 'comments/comment_list', comments: @user.comments %>
+    </div>
+  </div>
+
+</div>
