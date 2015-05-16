@@ -18,8 +18,31 @@
   margin-left: 135px
 }
 
-.navbar .nav > li > a.brand {
-  padding-left: 0px;
+.navbar {
+
+  .dropdown-toggle {
+    font-size: 12px;
+  }
+
+  .dropdown-menu {
+    font-size: 12px;
+  }
+}
+
+
+.navbar .nav > li {
+
+  a.brand {
+    padding-left: 0px;
+  }
+
+  a.btn {
+    padding: 4px 10px;
+    color: white;
+    text-shadow: none;
+    margin-left: 6px;
+  }
+
 }
 
 .quiet {
