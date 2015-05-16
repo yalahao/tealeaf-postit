@@ -12,7 +12,7 @@
 <% if params[:tab].nil? || params[:tab] == 'posts'  %>
   <%= render 'posts/post_list', posts: @user.posts %>
 <% elsif params[:tab] == 'comments' %>
-  <%= render 'comments/comment_list', comments: @user.comments %>
+  <%= render 'comments/comment_list', comments: @user.comments, show_post: true %>
 <% end %>
 
   

@@ -1,6 +1,9 @@
+<% show_post ||= false %>
+
+
 <% comments.each do |comment| %>
   <div class="well">
-    <em><%= comment.body %></em> <% if current_page? user_path %>on <%= link_to comment.post.title, post_path(comment.post) %><% end %>
+    <em><%= comment.body %></em> <% if show_post %>on <%= link_to comment.post.title, post_path(comment.post) %><% end %>
     <br>
     <span class='quiet'>by</span>
     <%= link_to "#{comment.creator.username}", user_path(comment.creator) %>
