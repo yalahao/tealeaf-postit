@@ -84,7 +84,7 @@ div#flash_notice {
 }
 
 div.votes {
-  padding: 5px 8px;
+  padding: 5px 10px;
   background-color: #ffffff;
   border: 1px solid #e3e3e3;
   text-align: center;
@@ -97,6 +97,10 @@ div.votes {
 
   i {
     margin: 5px 0;
+  }
+
+  i.no-vote {
+    color: #ababab;
   }
 
   i.up-vote {

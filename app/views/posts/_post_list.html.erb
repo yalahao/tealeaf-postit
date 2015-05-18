@@ -1,10 +1,25 @@
 <% posts.each do |post| %>
   <div class='row'>
     <div class='votes well span0'>
-      <i class="fa fa-thumbs-o-up up-vote"></i>
-      <p>88</p>
-      <i class='fa fa-thumbs-o-down down-vote'></i>
+
+      <!-- Up-vote icon -->
+      <% if post.votes.empty? %>
+        <%= link_to '<i class="fa fa-thumbs-o-up no-vote"></i>'.html_safe, vote_post_path(post, vote: true), method: 'post' %>
+      <% else %>
+        <%= link_to '<i class="fa fa-thumbs-o-up up-vote"></i>'.html_safe, vote_post_path(post, vote: nil), method: 'post' %>
+      <% end %>
+
+      <p><%= post.vote_count %></p>
+
+      <!-- Down-vote icon -->
+      <% if post.votes.empty? %>
+        <%= link_to '<i class="fa fa-thumbs-o-down no-vote"></i>'.html_safe, vote_post_path(post, vote: false), method: 'post' %>
+      <% else %>
+        <%= link_to '<i class="fa fa-thumbs-o-down down-vote"></i>'.html_safe, vote_post_path(post, vote: nil), method: 'post' %>
+      <% end %>
+
     </div>
+
     <div class="well post span8" >
       <%= render 'posts/post_title_categories', post: post %>
       <p><%= post.description %></p>

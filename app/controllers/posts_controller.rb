@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :get_post, only: [:show, :edit, :update]
+  before_action :get_post, only: [:show, :edit, :update, :vote, :vote_count]
   before_action :require_user, except: [:index, :show]
 
   def new
@@ -37,6 +37,19 @@ class PostsController < ApplicationController
       render :edit
     end
   end
+
+  def vote
+    @vote = Vote.create(voteable: @post, user_id: current_user, vote: params[:vote])
+    if @vote.valid?
+      flash[:notice] = "Your vote was counted."
+    else
+      flash[:error] = "You can only vote once per item."
+    end
+
+    redirect_to :back
+
+  end
+
 
   private
 
