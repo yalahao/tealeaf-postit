@@ -2,10 +2,11 @@
 
       <!-- Up-vote icon -->
       <!-- I believe if obj is a comment, voet_post_path will not function correctly -->
-      <% if obj.votes.empty? %>
-        <%= link_to '<i class="fa fa-thumbs-o-up no-vote"></i>'.html_safe, vote_post_path(obj, vote: true), method: 'post' %>
-      <% else %>
+      <% if vote_status(current_user, obj) == true %>
         <%= link_to '<i class="fa fa-thumbs-o-up up-vote"></i>'.html_safe, vote_post_path(obj, vote: nil), method: 'post' %>
+      <% else %>
+        <%= link_to '<i class="fa fa-thumbs-o-up no-vote"></i>'.html_safe, vote_post_path(obj, vote: true), method: 'post' %>
+        
       <% end %>
 
       <p><%= obj.vote_count %></p>
