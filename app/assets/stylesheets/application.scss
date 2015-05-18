@@ -82,3 +82,28 @@ div.post {
 div#flash_notice {
   width: 500px;
 }
+
+div.votes {
+  padding: 5px 8px;
+  background-color: #ffffff;
+  border: 1px solid #e3e3e3;
+  text-align: center;
+  font-size: 20px;
+
+  p {
+    padding: 0 5px;
+    margin: 5px 0;
+  }
+
+  i {
+    margin: 5px 0;
+  }
+
+  i.up-vote {
+    color: #5baf5b;
+  }
+
+  i.down-vote {
+    color: #bf3535;
+  }
+}

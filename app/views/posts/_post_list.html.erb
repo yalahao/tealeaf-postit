@@ -1,12 +1,19 @@
 <% posts.each do |post| %>
-  <div class="well post" >
-    <%= render 'posts/post_title_categories', post: post %>
-    <p><%= post.description %></p>
-    <p>
-      <span class="quiet">posted by </span>
-      <%= link_to post.creator.username, user_path(post.creator) %>
-      <small><%= formatted_date(post.created_at) %></small>
-    </p>
-    <small><span><%= link_to "#{post.comments.size} comments", post_path(post) %></span></small>
+  <div class='row'>
+    <div class='votes well span0'>
+      <i class="fa fa-thumbs-o-up up-vote"></i>
+      <p>88</p>
+      <i class='fa fa-thumbs-o-down down-vote'></i>
+    </div>
+    <div class="well post span8" >
+      <%= render 'posts/post_title_categories', post: post %>
+      <p><%= post.description %></p>
+      <p>
+        <span class="quiet">posted by </span>
+        <%= link_to post.creator.username, user_path(post.creator) %>
+        <small><%= formatted_date(post.created_at) %></small>
+      </p>
+      <small><span><%= link_to "#{post.comments.size} comments", post_path(post) %></span></small>
+    </div>
   </div>
 <% end %>
