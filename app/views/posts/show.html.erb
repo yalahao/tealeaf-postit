@@ -1,16 +1,23 @@
-<%= render 'posts/post_title_categories', post: @post %>
-<h5>Posted by <%= link_to "#{@post.creator.username}", user_path(@post.creator) %></h5>
-<p><%= @post.description %></p>
-<p><%= link_to 'Back', posts_path %> | <%= link_to 'Edit', edit_post_path(@post) %></p>
+<div class='row'>
 
-<%= render 'shared/error_msg', obj: @comment %>
-<h5>What do you think of this post?</h5>
-<%= form_for [@post, @comment] do |f| %>
-  <%= f.text_area :body %>
-  <br />
-  <%= f.submit "Add Comment" %>
-<% end %>
+  <%= render 'shared/vote_box', obj: @post %>
+
+  <div class="well post span8" >
+
+    <%= render 'posts/post_title_categories', post: @post %>
+    <h5>Posted by <%= link_to "#{@post.creator.username}", user_path(@post.creator) %></h5>
+    <p><%= @post.description %></p>
+    <p><%= link_to 'Back', posts_path %> | <%= link_to 'Edit', edit_post_path(@post) %></p>
+
+    <%= render 'shared/error_msg', obj: @comment %>
+    <h5>What do you think of this post?</h5>
+    <%= form_for [@post, @comment] do |f| %>
+      <%= f.text_area :body %>
+      <br />
+      <%= f.submit "Add Comment" %>
+    <% end %>
+  </div>
+</div>
 
 <h5>Comments:</h5>
 <%= render 'comments/comment_list', comments: @post.comments %>
-

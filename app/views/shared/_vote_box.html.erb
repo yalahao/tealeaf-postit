@@ -6,10 +6,9 @@
         <%= link_to '<i class="fa fa-thumbs-o-up up-vote"></i>'.html_safe, vote_post_path(obj, vote: nil), method: 'post' %>
       <% else %>
         <%= link_to '<i class="fa fa-thumbs-o-up no-vote"></i>'.html_safe, vote_post_path(obj, vote: true), method: 'post' %>
-        
       <% end %>
 
-      <p><%= obj.vote_count %></p>
+      <p><%= vote_count(obj) %></p>
 
       <!-- Down-vote icon -->
       <% if obj.votes.empty? %>

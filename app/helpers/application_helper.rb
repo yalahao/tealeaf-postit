@@ -17,4 +17,10 @@ module ApplicationHelper
     end
   end
 
+  def vote_count(obj)
+    up_vote = obj.votes.where(vote: true).size
+    down_vote = obj.votes.where(vote: false).size
+    up_vote - down_vote
+  end
+
 end

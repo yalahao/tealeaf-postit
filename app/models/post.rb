@@ -10,11 +10,7 @@ class Post < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
   validates :creator, presence: true
 
-  def vote_count
-    up_vote = self.votes.where(vote: true).size
-    down_vote = self.votes.where(vote: false).size
-    up_vote - down_vote
-  end
+
 
 
 
