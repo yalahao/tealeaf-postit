@@ -19,5 +19,7 @@
   </div>
 </div>
 
-<h5>Comments:</h5>
-<%= render 'comments/comment_list', comments: @post.comments %>
+<% if !@post.comments.empty? %>
+  <h5>Comments:</h5>
+  <%= render 'comments/comment_list', comments: @post.comments %>
+<% end %>
