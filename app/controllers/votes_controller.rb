@@ -1,8 +1,9 @@
-class VotesController << ActionController
+class VotesController < ApplicationController
 
-  before_create :set_current_user
+  before_update :set_current_user
 
   def set_current_user
-    self.user = current_user
+    binding.pry
+    self.creator = current_user
   end 
 end 
