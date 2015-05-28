@@ -1,20 +1,26 @@
 <div class='votes well span0'>
+  <% if current_user %>
+    <!-- Up-vote icon -->
+    <!-- I believe if obj is a comment, voet_post_path will not function correctly -->
+    <% if vote_status(current_user, obj) == true %>
+      <%= link_to '<i class="fa fa-thumbs-o-up up-vote"></i>'.html_safe, vote_post_path(obj), method: 'delete', creator: current_user %>
+    <% else %>
+      <%= link_to '<i class="fa fa-thumbs-o-up no-vote"></i>'.html_safe, vote_post_path(obj, vote: true), method: 'post' %>
+    <% end %>
 
-  <!-- Up-vote icon -->
-  <!-- I believe if obj is a comment, voet_post_path will not function correctly -->
-  <% if vote_status(current_user, obj) == true %>
-    <%= link_to '<i class="fa fa-thumbs-o-up up-vote"></i>'.html_safe, vote_post_path(obj), method: 'delete' %>
+    <p><%= vote_count(obj) %></p>
+
+    <!-- Down-vote icon -->
+    <% if vote_status(current_user, obj) == false %>
+      <%= link_to '<i class="fa fa-thumbs-o-down down-vote"></i>'.html_safe, vote_post_path(obj), method: 'delete' %>
+    <% else %>
+      <%= link_to '<i class="fa fa-thumbs-o-down no-vote"></i>'.html_safe, vote_post_path(obj, vote: false), method: 'post' %>
+    <% end %>
+
   <% else %>
-    <%= link_to '<i class="fa fa-thumbs-o-up no-vote"></i>'.html_safe, vote_post_path(obj, vote: true), method: 'post' %>
+    <%= link_to '<i class="fa fa-thumbs-o-up no-vote"></i>'.html_safe, login_path %>
+    <p><%= vote_count(obj) %></p>
+    <%= link_to '<i class="fa fa-thumbs-o-down no-vote"></i>'.html_safe, login_path %>
+
   <% end %>
-
-  <p><%= vote_count(obj) %></p>
-
-  <!-- Down-vote icon -->
-  <% if vote_status(current_user, obj) == false %>
-    <%= link_to '<i class="fa fa-thumbs-o-down down-vote"></i>'.html_safe, vote_post_path(obj), method: 'delete' %>
-  <% else %>
-    <%= link_to '<i class="fa fa-thumbs-o-down no-vote"></i>'.html_safe, vote_post_path(obj, vote: false), method: 'post' %>
-  <% end %>
-
 </div>
