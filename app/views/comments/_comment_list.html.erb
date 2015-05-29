@@ -2,7 +2,7 @@
 
 <% comments.each do |comment| %>
   <div class='row'>
-    <%= render 'shared/vote_box', obj: comment %>
+    <%= render 'shared/vote_box_comment', obj: comment %>
     <div class="well post span8" >
       <em><%= comment.body %></em> <% if show_post %>on <%= link_to comment.post.title, post_path(comment.post) %><% end %>
       <br>
