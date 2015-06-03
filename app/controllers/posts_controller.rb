@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   before_action :get_post, only: [:show, :edit, :update, :vote, :vote_count]
   before_action :require_user, except: [:index, :show]
-  before_action :require_current_user, only: [:edit]
+  before_action :require_creator, only: [:edit]
 
   def new
     @post = Post.new
@@ -60,7 +60,7 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    def require_current_user
+    def require_creator
       if @post.creator != current_user
         flash[:error] = "You are not allowed to do that."
         redirect_to :back
