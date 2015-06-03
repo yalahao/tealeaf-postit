@@ -5,7 +5,7 @@
     <% if vote_status(current_user, obj) == true %>
       <%= link_to '<i class="fa fa-thumbs-o-up up-vote"></i>'.html_safe, vote_post_comment_path(obj.post, obj), method: 'delete', creator: current_user %>
     <% else %>
-      <%= link_to '<i class="fa fa-thumbs-o-up no-vote"></i>'.html_safe, vote_post_comment_path(obj.post, obj, vote: true), method: 'post' %>
+      <%= link_to '<i class="fa fa-thumbs-o-up no-vote"></i>'.html_safe, vote_post_comment_path(obj.post, obj, vote: true), method: 'post', remote: true %>
     <% end %>
 
     <p><%= vote_count(obj) %></p>
@@ -14,7 +14,7 @@
     <% if vote_status(current_user, obj) == false %>
       <%= link_to '<i class="fa fa-thumbs-o-down down-vote"></i>'.html_safe, vote_post_comment_path(obj.post, obj), method: 'delete' %>
     <% else %>
-      <%= link_to '<i class="fa fa-thumbs-o-down no-vote"></i>'.html_safe, vote_post_comment_path(obj.post, obj, vote: false), method: 'post' %>
+      <%= link_to '<i class="fa fa-thumbs-o-down no-vote"></i>'.html_safe, vote_post_comment_path(obj.post, obj, vote: false), method: 'post', remote: true %>
     <% end %>
 
   <% else %>
