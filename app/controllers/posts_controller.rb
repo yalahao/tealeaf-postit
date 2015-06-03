@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   before_action :get_post, only: [:show, :edit, :update, :vote, :vote_count]
   before_action :require_user, except: [:index, :show]
+  before_action :require_current_user, only: [:edit]
 
   def new
     @post = Post.new
@@ -45,9 +46,7 @@ class PostsController < ApplicationController
     else
       flash[:error] = "You can only vote once per item."
     end
-
     redirect_to :back
-
   end
 
 
@@ -59,6 +58,13 @@ class PostsController < ApplicationController
 
     def get_post
       @post = Post.find(params[:id])
+    end
+
+    def require_current_user
+      if @post.creator != current_user
+        flash[:error] = "You are not allowed to do that."
+        redirect_to :back
+      end
     end
 
 end 
