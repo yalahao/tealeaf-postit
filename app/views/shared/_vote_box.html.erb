@@ -3,24 +3,24 @@
     <!-- Up-vote icon -->
     <% if vote_status(current_user, obj) == true %>
       <%= link_to vote_post_path(obj), method: 'delete', remote: true do %>
-        <i class='fa fa-thumbs-o-up up-vote' id='post_<%= obj.id %>_upvote'></i>
+        <i class='fa fa-thumbs-o-up up-vote' id='post_<%= obj.slug %>_upvote'></i>
       <% end %>
     <% else %>
       <%= link_to vote_post_path(obj, vote: true), method: 'post', remote: true do %>
-        <i class='fa fa-thumbs-o-up no-vote' id='post_<%= obj.id %>_upvote'></i>
+        <i class='fa fa-thumbs-o-up no-vote' id='post_<%= obj.slug %>_upvote'></i>
       <% end %>
     <% end %>
 
-    <p><span id='post_<%= obj.id %>_votes'><%= vote_count(obj) %></span></p>
+    <p><span id='post_<%= obj.slug %>_votes'><%= vote_count(obj) %></span></p>
 
     <!-- Down-vote icon -->
     <% if vote_status(current_user, obj) == false %>
       <%= link_to vote_post_path(obj), method: 'delete', remote: true do %>
-        <i class='fa fa-thumbs-o-down down-vote' id='post_<%= obj.id %>_downvote'></i>
+        <i class='fa fa-thumbs-o-down down-vote' id='post_<%= obj.slug %>_downvote'></i>
       <% end %>
     <% else %>
       <%= link_to vote_post_path(obj, vote: false), method: 'post', remote: true do %>
-        <i class='fa fa-thumbs-o-down no-vote' id='post_<%= obj.id %>_downvote'></i>
+        <i class='fa fa-thumbs-o-down no-vote' id='post_<%= obj.slug %>_downvote'></i>
       <% end %>
     <% end %>
 

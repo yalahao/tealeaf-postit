@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.create(comment_params)
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by slug: params[:post_id]
     @comment.post = @post
     @comment.creator = current_user
     if @comment.save
@@ -31,7 +31,7 @@ class CommentsController < ApplicationController
       end
       format.js
     end
-    
+
   end
 
   private
