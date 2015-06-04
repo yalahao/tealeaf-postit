@@ -3,18 +3,26 @@
     <!-- Up-vote icon -->
     <!-- I believe if obj is a comment, voet_post_path will not function correctly -->
     <% if vote_status(current_user, obj) == true %>
-      <%= link_to '<i class="fa fa-thumbs-o-up up-vote"></i>'.html_safe, vote_post_path(obj), method: 'delete', creator: current_user %>
+      <%= link_to vote_post_path(obj), method: 'delete', remote: true do %>
+        <i class='fa fa-thumbs-o-up up-vote' id='post_<%= obj.id %>_upvote'></i>
+      <% end %>
     <% else %>
-      <%= link_to '<i class="fa fa-thumbs-o-up no-vote"></i>'.html_safe, vote_post_path(obj, vote: true), method: 'post', remote: true %>
+      <%= link_to vote_post_path(obj, vote: true), method: 'post', remote: true do %>
+        <i class='fa fa-thumbs-o-up no-vote' id='post_<%= obj.id %>_upvote'></i>
+      <% end %>
     <% end %>
 
-    <p><span id='post_<%= obj.id %>_votes %>'><%= vote_count(obj) %></span></p>
+    <p><span id='post_<%= obj.id %>_votes'><%= vote_count(obj) %></span></p>
 
     <!-- Down-vote icon -->
     <% if vote_status(current_user, obj) == false %>
-      <%= link_to '<i class="fa fa-thumbs-o-down down-vote"></i>'.html_safe, vote_post_path(obj), method: 'delete' %>
+      <%= link_to vote_post_path(obj), method: 'delete', remote: true do %>
+        <i class='fa fa-thumbs-o-down down-vote' id='post_<%= obj.id %>_downvote'></i>
+      <% end %>
     <% else %>
-      <%= link_to '<i class="fa fa-thumbs-o-down no-vote"></i>'.html_safe, vote_post_path(obj, vote: false), method: 'post', remote: true %>
+      <%= link_to vote_post_path(obj, vote: false), method: 'post', remote: true do %>
+        <i class='fa fa-thumbs-o-down no-vote' id='post_<%= obj.id %>_downvote'></i>
+      <% end %>
     <% end %>
 
   <% else %>

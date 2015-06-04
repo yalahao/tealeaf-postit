@@ -1,0 +1,12 @@
+<% if @vote.valid? %>
+  $("#post_<%= @post.id %>_votes").html("<%= vote_count(@post) %>")
+  <% if @vote.vote == true %>
+    $("#post_<%= @post.id %>_upvote").addClass("up-vote");
+    $("#post_<%= @post.id %>_upvote").removeClass("no-vote");
+  <% elsif @vote.vote == false %>
+    $("#post_<%= @post.id %>_downvote").addClass("down-vote");
+    $("#post_<%= @post.id %>_downvote").removeClass("no-vote");
+  <% end %>
+<% else %>
+  alert('You can only vote on this once');
+<% end %>
