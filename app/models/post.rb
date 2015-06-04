@@ -10,8 +10,9 @@ class Post < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
   validates :creator, presence: true
 
-
-
-
+  def generate_slug
+    self.slug = self.title.parameterize
+    self.save
+  end
 
 end
