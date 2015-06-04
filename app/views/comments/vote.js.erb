@@ -1,0 +1,12 @@
+<% if @vote.valid? %>
+  $("#comment_<%= @comment.id %>_votes").html("<%= vote_count(@comment) %>")
+  <% if @vote.vote == true %>
+    $("#comment_<%= @comment.id %>_upvote").addClass("up-vote");
+    $("#comment_<%= @comment.id %>_upvote").removeClass("no-vote");
+  <% elsif @vote.vote == false %>
+    $("#comment_<%= @comment.id %>_downvote").addClass("down-vote");
+    $("#comment_<%= @comment.id %>_downvote").removeClass("no-vote");
+  <% end %>
+<% else %>
+  alert('You can only vote on this once');
+<% end %>
