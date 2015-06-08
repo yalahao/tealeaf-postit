@@ -1,4 +1,4 @@
-module Voetable
+module Voteable
   def self.included(base)
     base.send(:include, InstanceMethods)
     base.extend ClassMethods
@@ -7,13 +7,13 @@ module Voetable
     end
   end
 
-  module InstanceMethods
+  module ClassMethods
     def has_many_votes
-      has_many :votes, as :voetable
+      has_many :votes, as: :voteable
     end
   end
 
-  module ClassMethods
+  module InstanceMethods
     def vote_status(user)
       current_user_vote = self.votes.find_by(user_id: user.id)
       if current_user_vote

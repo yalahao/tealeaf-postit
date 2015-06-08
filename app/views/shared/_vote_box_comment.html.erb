@@ -1,7 +1,7 @@
 <div class='votes well span0'>
   <% if current_user %>
     <!-- Up-vote icon -->
-    <% if vote_status(current_user, obj) == true %>
+    <% if obj.vote_status(current_user) == true %>
       <%= link_to vote_post_comment_path(obj.post, obj), method: 'delete', remote: true do %>
         <i class='fa fa-thumbs-o-up up-vote' id='comment_<%= obj.id %>_upvote'></i>
       <% end %>
@@ -11,10 +11,10 @@
       <% end %>
     <% end %>
 
-    <p><span id='comment_<%= obj.id %>_votes'><%= vote_count(obj) %></span></p>
+    <p><span id='comment_<%= obj.id %>_votes'><%= obj.vote_count %></span></p>
 
     <!-- Down-vote icon -->
-    <% if vote_status(current_user, obj) == false %>
+    <% if obj.vote_status(current_user) == false %>
       <%= link_to vote_post_comment_path(obj.post, obj), method: 'delete', remote: true do %>
         <i class='fa fa-thumbs-o-down down-vote' id='comment_<%= obj.id %>_downvote'></i>
       <% end %>
