@@ -5,6 +5,8 @@
     <%= f.text_field :username %>
     <%= f.label :password %>
     <%= f.password_field :password %>
+    <%= f.label :time_zone %>
+    <%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.all, default: Time.zone.name %>
     <br />
     <%= f.submit @user.new_record? ? "Register" : "Update", class: 'btn btn-success' %>
   <% end %>

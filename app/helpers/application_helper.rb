@@ -5,7 +5,12 @@ module ApplicationHelper
   end
 
   def formatted_date(datetime)
-    datetime.strftime("on %B %-d, %Y")
+    if logged_in? && !current_user.time_zone.blank?
+      datetime = datetime.in_time_zone(current_user.time_zone)
+    end
+
+    datetime.strftime("on %B %-d, %Y %Z")
+    
   end
 
 
