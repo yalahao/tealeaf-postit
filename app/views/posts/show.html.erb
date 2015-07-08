@@ -7,7 +7,7 @@
     <%= render 'posts/post_title_categories', post: @post %>
     <h5>Posted by <%= link_to "#{@post.creator.username}", user_path(@post.creator) %></h5>
     <p><%= @post.description %></p>
-    <p><%= link_to 'Back', posts_path %> <% if current_user == @post.creator %> | <%= link_to 'Edit', edit_post_path(@post) %> <% end %> </p>
+    <p><%= link_to 'Back', posts_path %> <% if current_user == @post.creator || current_user.admin? %> | <%= link_to 'Edit', edit_post_path(@post) %> <% end %> </p>
 
     <%= render 'shared/error_msg', obj: @comment %>
     <h5>What do you think of this post?</h5>

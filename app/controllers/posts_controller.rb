@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 
   before_action :get_post, only: [:show, :edit, :update, :vote, :vote_count]
   before_action :require_user, except: [:index, :show]
-  before_action :require_creator, only: [:edit]
+  before_action :require_creator_or_admin, only: [:edit]
 
   def new
     @post = Post.new
@@ -65,9 +65,11 @@ class PostsController < ApplicationController
       @post = Post.find_by slug: params[:id]
     end
 
-    def require_creator
-      if @post.creator != current_user
-        flash[:error] = "You are not allowed to do that."
+    def require_creator_or_admin 
+      if !logged_in
+        access_denied
+      elsif @post.creator != current_user && !current_user.admin?
+        flash[:error] = "You can't do that."
         redirect_to :back
       end
     end
